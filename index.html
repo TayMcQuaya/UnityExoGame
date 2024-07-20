@@ -33,6 +33,9 @@
       #unity-footer {
         display: none; /* Hide the footer */
       }
+      .hide-cursor {
+        cursor: none;
+      }
     </style>
   </head>
   <body>
@@ -105,6 +108,14 @@
           document.querySelector("#unity-loading-bar").style.display = "none";
           document.body.addEventListener('click', () => {
             unityInstance.SetFullscreen(1);
+            document.body.classList.add('hide-cursor');
+          });
+          document.body.addEventListener('mousemove', () => {
+            document.body.classList.remove('hide-cursor');
+            clearTimeout(window.hideCursorTimeout);
+            window.hideCursorTimeout = setTimeout(() => {
+              document.body.classList.add('hide-cursor');
+            }, 2000);
           });
         }).catch((message) => {
           alert(message);
