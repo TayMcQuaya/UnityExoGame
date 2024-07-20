@@ -6,10 +6,41 @@
     <title>Unity Web Player | 2D Mad Scientist 1.4</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
+    <style>
+      body, html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #000;
+      }
+      #unity-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #unity-canvas {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      #unity-footer {
+        display: none; /* Hide the footer */
+      }
+      .hide-cursor {
+        cursor: none;
+      }
+    </style>
   </head>
   <body>
-    <div id="unity-container" class="unity-desktop">
-      <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
+    <div id="unity-container">
+      <canvas id="unity-canvas" tabindex="-1"></canvas>
       <div id="unity-loading-bar">
         <div id="unity-logo"></div>
         <div id="unity-progress-bar-empty">
@@ -17,11 +48,6 @@
         </div>
       </div>
       <div id="unity-warning"> </div>
-      <div id="unity-footer">
-        <div id="unity-logo-title-footer"></div>
-        <div id="unity-fullscreen-button"></div>
-        <div id="unity-build-title">2D Mad Scientist 1.4</div>
-      </div>
     </div>
     <script>
       var canvas = document.querySelector("#unity-canvas");
@@ -67,6 +93,7 @@
         document.querySelector("#unity-container").className = "unity-mobile";
         canvas.className = "unity-mobile";
       } else {
+<<<<<<< HEAD
         canvas.style.width = "960px";
         canvas.style.height = "600px";
         setTimeout(function() {
@@ -79,6 +106,10 @@
             alert(message);
           });
         }, 1000);
+=======
+        canvas.style.width = "100%";
+        canvas.style.height = "100%";
+>>>>>>> gh-pages
       }
 
       document.querySelector("#unity-loading-bar").style.display = "block";
@@ -90,9 +121,23 @@
           document.querySelector("#unity-progress-bar-full").style.width = 100 * progress + "%";
         }).then((unityInstance) => {
           document.querySelector("#unity-loading-bar").style.display = "none";
+<<<<<<< HEAD
           document.querySelector("#unity-fullscreen-button").onclick = () => {
             unityInstance.SetFullscreen(1);
           };
+=======
+          document.body.addEventListener('click', () => {
+            unityInstance.SetFullscreen(1);
+            document.body.classList.add('hide-cursor');
+          });
+          document.body.addEventListener('mousemove', () => {
+            document.body.classList.remove('hide-cursor');
+            clearTimeout(window.hideCursorTimeout);
+            window.hideCursorTimeout = setTimeout(() => {
+              document.body.classList.add('hide-cursor');
+            }, 2000);
+          });
+>>>>>>> gh-pages
         }).catch((message) => {
           alert(message);
         });
