@@ -33,9 +33,6 @@
       #unity-footer {
         display: none; /* Hide the footer */
       }
-      .hide-cursor {
-        cursor: none;
-      }
     </style>
   </head>
   <body>
@@ -93,23 +90,8 @@
         document.querySelector("#unity-container").className = "unity-mobile";
         canvas.className = "unity-mobile";
       } else {
-<<<<<<< HEAD
-        canvas.style.width = "960px";
-        canvas.style.height = "600px";
-        setTimeout(function() {
-          var unityInstance = createUnityInstance(canvas, config, (progress) => {
-            document.querySelector("#unity-progress-bar-full").style.width = 100 * progress + "%";
-          }).then((unityInstance) => {
-            document.querySelector("#unity-loading-bar").style.display = "none";
-            unityInstance.SetFullscreen(1); // Force fullscreen on load
-          }).catch((message) => {
-            alert(message);
-          });
-        }, 1000);
-=======
         canvas.style.width = "100%";
         canvas.style.height = "100%";
->>>>>>> gh-pages
       }
 
       document.querySelector("#unity-loading-bar").style.display = "block";
@@ -121,23 +103,9 @@
           document.querySelector("#unity-progress-bar-full").style.width = 100 * progress + "%";
         }).then((unityInstance) => {
           document.querySelector("#unity-loading-bar").style.display = "none";
-<<<<<<< HEAD
-          document.querySelector("#unity-fullscreen-button").onclick = () => {
-            unityInstance.SetFullscreen(1);
-          };
-=======
           document.body.addEventListener('click', () => {
             unityInstance.SetFullscreen(1);
-            document.body.classList.add('hide-cursor');
           });
-          document.body.addEventListener('mousemove', () => {
-            document.body.classList.remove('hide-cursor');
-            clearTimeout(window.hideCursorTimeout);
-            window.hideCursorTimeout = setTimeout(() => {
-              document.body.classList.add('hide-cursor');
-            }, 2000);
-          });
->>>>>>> gh-pages
         }).catch((message) => {
           alert(message);
         });
